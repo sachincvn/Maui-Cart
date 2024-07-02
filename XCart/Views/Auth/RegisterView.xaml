@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XCart.Views.Auth.RegisterView"
+              xmlns:viewModel="clr-namespace:XCart.ViewModels.Auth"
+             x:DataType="viewModel:RegisterViewModel"
+             BackgroundColor="{StaticResource BackgroundColor}"
+             Title="RegisterView">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="10">
+            <Image Source="login_image.png" HeightRequest="320" HorizontalOptions="Center"/>
+
+            <Label Text="Sign in" Style="{StaticResource MainHeadingTextStyle}" />
+
+            <Frame Style="{StaticResource CustomEntryFrame}">
+                <Entry Text="{Binding FirstName}" Style="{StaticResource CustomEntry}" Keyboard="Text" Placeholder="Enter Your First Name"/>
+            </Frame>
+
+            <Frame Style="{StaticResource CustomEntryFrame}">
+                <Entry Text="{Binding LastName}" Style="{StaticResource CustomEntry}" Keyboard="Text" Placeholder="Enter Your Last Name"/>
+            </Frame>
+
+
+            <Frame Style="{StaticResource CustomEntryFrame}">
+                <Entry Text="{Binding Email}" Style="{StaticResource CustomEntry}" Keyboard="Email" Placeholder="Enter Your Email"/>
+            </Frame>
+
+            <Frame Style="{StaticResource CustomEntryFrame}">
+                <Entry Text="{Binding Phone}" Style="{StaticResource CustomEntry}" Keyboard="Telephone" Placeholder="Enter Your Phone"/>
+            </Frame>
+
+            <Frame Style="{StaticResource CustomEntryFrame}">
+                <Entry Text="{Binding Password}" Style="{StaticResource CustomEntry}" IsPassword="True" Placeholder="Enter Your Password"/>
+            </Frame>
+
+            <Label Text="{Binding ErrorMessage}" Style="{StaticResource NormalTextStyle}" TextColor="{StaticResource Primary}" HorizontalTextAlignment="Center"/>
+
+            <Button Text="Sign Up" Style="{StaticResource PrimaryButtonStyle}" Command="{Binding RegisterUserCommand}" />
+
+            <HorizontalStackLayout HorizontalOptions="Center" Margin="0,20,0,0">
+                <Label Text="Already have an account?  " Style="{StaticResource NormalTextStyle}" />
+                <Label Text=" Sign In" BackgroundColor="Transparent" FontAttributes="Bold" TextColor="{StaticResource PrimaryColor}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding NavigateToLoginCommand}"/>
+                        </Label.GestureRecognizers>
+                </Label>
+            </HorizontalStackLayout>
+
+            <Label Text="Or signup with" 
+                Style="{StaticResource NormalTextStyle}" 
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                Margin="0,20,0,0"/>
+
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Button BackgroundColor="Transparent" ImageSource="ic_facebook.png"/>
+                <Button BackgroundColor="Transparent" ImageSource="ic_google.png"/>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

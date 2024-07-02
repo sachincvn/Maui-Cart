@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:XCart.ViewModels.Auth"
+             x:DataType="viewModel:LoginViewModel"
+             x:Class="XCart.Views.Auth.LoginView"
+             Shell.NavBarIsVisible="False"
+              BackgroundColor="{StaticResource BackgroundColor}"
+             Title="LoginView">
+    
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="10">
+            <Image Source="login_image.png" HeightRequest="320" HorizontalOptions="Center"/>
+
+            <Label Text="Sign in" Style="{StaticResource MainHeadingTextStyle}" />
+
+
+            <Frame Style="{StaticResource CustomEntryFrame}">
+                <Entry Text="{Binding Email}" Style="{StaticResource CustomEntry}" Keyboard="Email" Placeholder="Enter Your Email"/>
+            </Frame>
+
+            <Frame Style="{StaticResource CustomEntryFrame}">
+                <Entry Text="{Binding Password}" Style="{StaticResource CustomEntry}" IsPassword="True" Placeholder="Enter Your Password"/>
+            </Frame>
+
+            <Label Text="{Binding ErrorMessage}" Style="{StaticResource NormalTextStyle}" TextColor="{StaticResource Primary}" HorizontalTextAlignment="Center"/>
+
+            <Button Text="Sign in" Style="{StaticResource PrimaryButtonStyle}" Command="{Binding LoginUserCommand}" />
+
+            <HorizontalStackLayout HorizontalOptions="Center" Margin="0,20,0,0">
+                <Label Text="Don't have an account?" Style="{StaticResource NormalTextStyle}" />
+                <Label Text=" Sign up" BackgroundColor="Transparent" FontAttributes="Bold" TextColor="{StaticResource PrimaryColor}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NavigateToRegisterCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </HorizontalStackLayout>
+
+            <Label Text="Or login with" 
+                   Style="{StaticResource NormalTextStyle}" 
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="0,20,0,0"/>
+
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Button BackgroundColor="Transparent" ImageSource="ic_facebook.png"/>
+                <Button BackgroundColor="Transparent" ImageSource="ic_google.png"/>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XCart.Views.Product.CartView"
+             Background="{StaticResource BackgroundColor}"
+             Title="CartView">
+    <Grid RowDefinitions="Auto,*">
+
+        <Label Text="Cart" Grid.Row="0" Style="{StaticResource MainHeadingTextStyle}" TextColor="{StaticResource Black}"
+             Margin="10,20,10,20" FontAttributes="Bold"
+             VerticalOptions="Start"/>
+
+        <Label Grid.Row="1" Text="TODO" VerticalOptions="Center" Style="{StaticResource SubHeadline}"
+               HorizontalOptions="Center" TextColor="{StaticResource PrimaryColor}"/>
+    </Grid>
+
+</ContentPage>

@@ -1,0 +1,43 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XCart.Views.Product.ShopView"
+             xmlns:viewModels="clr-namespace:XCart.ViewModels.Product"
+             xmlns:itemViewModels="clr-namespace:XCart.ViewModels.Product.Items"
+             x:DataType="viewModels:ShopViewModel"
+             Background="{StaticResource BackgroundColor}"
+             Title="ShopView">
+    <Grid RowDefinitions="Auto,Auto">
+
+        <Label Text="Shop" Grid.Row="0" Style="{StaticResource MainHeadingTextStyle}" TextColor="{StaticResource Black}"
+               Margin="10,20,10,20" FontAttributes="Bold"
+               VerticalOptions="Start"/>
+
+        <CollectionView Grid.Row="1" ItemsSource="{Binding Products}">
+            <CollectionView.EmptyView>
+                <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                    <Label Text="No products found!" Style="{StaticResource SubHeadline}" TextColor="{StaticResource Primary}" />
+                </StackLayout>
+            </CollectionView.EmptyView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="itemViewModels:ShopItemViewModel">
+                    <Frame Margin="10,5" Padding="5"  BorderColor="{StaticResource Gray100}">
+                        <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto">
+                            <Image Grid.Column="0" Source="{Binding Image}" HeightRequest="100" WidthRequest="100" Aspect="Fill" />
+                            <Grid Margin="5,0,5,0" RowDefinitions="Auto,Auto,*" Grid.Column="1">
+                                <Label Grid.Row="0" Text="{Binding Name}" FontSize="Medium" FontAttributes="Bold" TextColor="{StaticResource Black}" />
+                                <Label Grid.Row="1" Text="{Binding Description}" FontSize="Small" MaxLines="2" TextColor="{StaticResource Black}"/>
+                                <Grid Grid.Row="2" RowDefinitions="Auto,Auto" ColumnDefinitions="Auto,Auto,Auto,Auto">
+                                    <Label Grid.Column="0" Text="Qty:" TextColor="{StaticResource Black}" VerticalOptions="Center" />
+                                    <Stepper Grid.Column="1" Value="{Binding Quantity}" Minimum="1" Maximum="5" Increment="1" HorizontalOptions="Start" VerticalOptions="Center"/>
+                                    <Label Grid.Column="2" Text="{Binding Quantity}" TextColor="{StaticResource Black}" VerticalOptions="Center" />
+                                </Grid>
+                            </Grid>
+                            <Button Grid.ColumnSpan="2" Margin="5" Grid.Row="1" Text="Add to cart" Style="{StaticResource SecondaryButtonStyle}"/>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </Grid>
+</ContentPage>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XCart.Views.Product.AddProductView"
+             xmlns:viewModel="clr-namespace:XCart.ViewModels.Product"
+             x:DataType="viewModel:AddProductViewModel"
+             Background="{StaticResource BackgroundColor}"
+             Title="AddProductView">
+
+    <Grid RowDefinitions="Auto,Auto,Auto,*" Grid.Row="1">
+        <Image Source="ellipse_image.png" HeightRequest="180"  Grid.RowSpan="10" VerticalOptions="Start"  Aspect="Fill"/>
+        <Label Text="Add Product" Grid.Row="0" Style="{StaticResource MainHeadingTextStyle}"
+               TextColor="{StaticResource BackgroundColor}"
+               Margin="10,20,10,2"
+               VerticalOptions="Start"/>
+
+        <Label Text="Enter the below details, and add a new product" Grid.Row="1" Style="{StaticResource NormalTextStyle}"
+               VerticalOptions="Start"
+               FontSize="Caption"
+               TextColor="{StaticResource BackgroundColor}"
+               Margin="10,0,10,100"/>
+        <StackLayout Grid.Row="2" Padding="20">
+           
+            <Frame Style="{StaticResource CustomEntryFrame}" Margin="0,10">
+                <Entry Placeholder="Product Name" Text="{Binding ProductName}" Style="{StaticResource CustomEntry}" />
+            </Frame>
+            <Frame Style="{StaticResource CustomEntryFrame}" Margin="0,15">
+                <Entry Placeholder="Product Description" Text="{Binding ProductDescription}" Style="{StaticResource CustomEntry}" />
+            </Frame>
+
+            <Frame Style="{StaticResource CustomEntryFrame}" Margin="0,15">
+                <Entry Placeholder="Product Price" Keyboard="Numeric" Text="{Binding ProductPrice}" Style="{StaticResource CustomEntry}" />
+            </Frame>
+
+            <Button Text="Pick Image" Command="{Binding PickImageCommand}" Margin="0,15" Style="{StaticResource PrimaryButtonStyle}" />
+            <Image Source="{Binding ProductImageSource}" Aspect="AspectFit" HeightRequest="200" />
+
+        </StackLayout>
+
+        <Button Grid.Row="3"  VerticalOptions="End" Margin="10,4" Style="{StaticResource PrimaryButtonStyle}"
+                Text="Add Product" Command="{Binding AddProductCommand}" />
+
+    </Grid>
+</ContentPage>

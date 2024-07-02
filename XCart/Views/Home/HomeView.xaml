@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XCart.Views.Home.HomeView"
+             xmlns:viewModels="clr-namespace:XCart.ViewModels.Home"
+             xmlns:itemViewModel="clr-namespace:XCart.ViewModels.Home.Items"
+             x:DataType="viewModels:HomeViewModel"
+             Background="{StaticResource BackgroundColor}"
+             Title="HomeView">
+    <Grid RowDefinitions="Auto,*">
+        
+        <Label Text="Products" Grid.Row="0" Style="{StaticResource MainHeadingTextStyle}" TextColor="{StaticResource Black}"
+               Margin="10,20,10,20" FontAttributes="Bold"
+        VerticalOptions="Start"/>
+
+        <CollectionView Grid.Row="1" ItemsSource="{Binding Products}">
+            <CollectionView.EmptyView>
+                <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                    <Label Text="No products found!" Style="{StaticResource SubHeadline}" TextColor="{StaticResource Primary}" />
+                </StackLayout>
+            </CollectionView.EmptyView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="itemViewModel:ProductItemViewModel">
+                    <Frame Margin="10,5" Padding="5"  BorderColor="{StaticResource Gray100}">
+                        <Grid ColumnDefinitions="Auto,*">
+                            <Image Grid.Column="0" Source="{Binding Image}" HeightRequest="100" WidthRequest="100" Aspect="Fill" />
+                            <Grid Margin="10,0,5,0" RowDefinitions="Auto,Auto,*" Grid.Column="1">
+                                <Label Grid.Row="0" Text="{Binding Name}" FontSize="Medium" FontAttributes="Bold" TextColor="{StaticResource Black}" />
+                                <Label Grid.Row="1" Text="{Binding Description}" FontSize="Small" MaxLines="2" TextColor="{StaticResource Black}"/>
+                                <Button Grid.Row="2" VerticalOptions="End" 
+                                        Text="{Binding IsInShop, Converter={StaticResource BoolToTextConverter}}"
+                                        Style="{StaticResource PrimaryButtonStyle}"
+                                        Command="{Binding ToggleProductInShopCommand}"
+                                        CommandParameter="{Binding .}" />
+                            </Grid>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Image Grid.Row="1" Source="ic_add_circle.png" 
+                WidthRequest="70"
+               HeightRequest="70"
+               Margin="20"
+               HorizontalOptions="End"
+               VerticalOptions="End">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding AddProductCommand}"/>
+            </Image.GestureRecognizers>
+        </Image>
+
+
+    </Grid>
+</ContentPage>
